@@ -2,6 +2,7 @@ package com.example.android.washingtonmetro;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -21,8 +22,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ImageView mapView = (ImageView) findViewById(R.id.map_image_view);
+        ImageView mapView = findViewById(R.id.map_image_view);
         Bitmap bitmap = ((BitmapDrawable)mapView.getDrawable()).getBitmap();
+        int mPhotoWidth = bitmap.getWidth();
+        int mPhotoHeight = bitmap.getHeight();
+        mapView.setImageBitmap(bitmap);
+
 
         mapView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -31,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                     String hexColor = String.format("#%06X", (0xFFFFFF & pixel));
                     float x = event.getX();
                     float y = event.getY();
-                    Log.v("kjh", hexColor + " x = " + x + " y = " + y);
+                    Log.v("Color check", "Color " + hexColor + " x = " + x + " y = " + y);
                     //TouchToStation.getStation(pixel);
 
                 return true;
