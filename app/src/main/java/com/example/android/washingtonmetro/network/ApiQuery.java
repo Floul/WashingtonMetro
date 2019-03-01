@@ -1,7 +1,8 @@
-package com.example.android.washingtonmetro;
+package com.example.android.washingtonmetro.network;
 
 import android.util.Log;
-import android.widget.Toast;
+
+import com.example.android.washingtonmetro.Train;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,9 +30,6 @@ public class ApiQuery {
     private static String jsonStringResponse = "";
 
     static ArrayList<Train> trainsToStation = new ArrayList<>();
-
-
-
 
     private ApiQuery() {
     }
