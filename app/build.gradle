@@ -25,6 +25,8 @@ dependencies {
     implementation 'com.android.support:support-v4:27.1.1'
     testImplementation 'junit:junit:4.12'
     implementation 'com.squareup.okhttp3:okhttp:3.13.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+
     android {
         // Configure only for each module that uses Java 8
         // language features (either in its source code or

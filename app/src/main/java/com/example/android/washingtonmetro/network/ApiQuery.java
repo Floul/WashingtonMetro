@@ -75,8 +75,6 @@ public class ApiQuery {
                 }
             }
 
-
-
         });
         return trainsToStation;
 
