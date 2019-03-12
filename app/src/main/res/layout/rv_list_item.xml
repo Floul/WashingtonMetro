@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:background="@color/colorAccent"
     android:orientation="horizontal">
 
     <TextView
@@ -12,18 +13,20 @@
         android:layout_weight="1"
         android:background="@color/colorPrimaryDark"
         android:text="LINE" />
+
     <TextView
         android:id="@+id/destination_text_view"
-        android:layout_weight="2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="2"
         android:background="@color/colorPrimaryDark"
         android:text="DESTINATION" />
+
     <TextView
         android:id="@+id/time_text_view"
-        android:layout_weight="2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="2"
         android:background="@color/colorPrimaryDark"
         android:text="TIME" />
 

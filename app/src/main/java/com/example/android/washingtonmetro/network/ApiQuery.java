@@ -12,9 +12,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -49,6 +48,10 @@ public class ApiQuery {
         return url;
     }
 
+    public interface OnDataLoaded {
+        void loaded(List<Train> trains);
+    }
+
     private static ArrayList makeHttpRequest(URL url) {
         Log.v(LOG_TAG, "Making a Http Request");
         OkHttpClient httpClient = new OkHttpClient();
@@ -56,26 +59,14 @@ public class ApiQuery {
                 .url(url)
                 .addHeader("api_key", "e13626d03d8e4c03ac07f95541b3091b")
                 .build();
-        httpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-                Log.v(LOG_TAG, "Http request failure");
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    jsonStringResponse = response.body().string();
-                    Log.v(LOG_TAG, "API responded with code = " + response.code()+response.body());
-                    trainsToStation = parseJSON(jsonStringResponse);
-                } else {
-                    Log.e(LOG_TAG, "API responded with code = " + response.code()+response.body());
-                }
-            }
-
-        });
+        try {
+            final Response response = httpClient.newCall(request).execute();
+            jsonStringResponse = response.body().string();
+            Log.v(LOG_TAG, "API responded with code = " + response.code()+response.body());
+            trainsToStation = parseJSON(fakeJSON);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return trainsToStation;
 
     }

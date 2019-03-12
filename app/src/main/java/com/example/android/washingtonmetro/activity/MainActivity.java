@@ -53,9 +53,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.slide_in_up,R.anim.slide_out_down,R.anim.slide_in_up,R.anim.slide_out_down);
         fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.add(R.id.fragment_container, stationInfoFragment,"");
+        fragmentTransaction.add(R.id.fragment_container, stationInfoFragment);
         fragmentTransaction.commit();
     }
-
-
 }

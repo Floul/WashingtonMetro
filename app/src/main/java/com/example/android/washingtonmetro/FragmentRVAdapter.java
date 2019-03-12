@@ -9,14 +9,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class FragmentRVAdapter extends RecyclerView.Adapter<TrainViewHolder> {
 
-    private ArrayList<Train> mTrains = new ArrayList<>();
+    public ArrayList<Train> mTrains = new ArrayList<>();
 
-    public FragmentRVAdapter(ArrayList<Train> trains) {
-        mTrains = trains;
+    public FragmentRVAdapter() {
     }
 
     @NonNull
@@ -42,6 +40,12 @@ public class FragmentRVAdapter extends RecyclerView.Adapter<TrainViewHolder> {
     @Override
     public int getItemCount() {
         return mTrains == null ? 0 : mTrains.size();
+    }
+
+    public void setData(ArrayList<Train> newTrains) {
+        mTrains.clear();
+        mTrains.addAll(newTrains);
+        notifyDataSetChanged();
     }
 }
 
