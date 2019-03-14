@@ -26,9 +26,9 @@ public class ApiQuery {
 
     private static final String LOG_TAG = ApiQuery.class.getSimpleName();
 
-    private static String jsonStringResponse = "";
+    private static String jsonStringResponse;
 
-    static ArrayList<Train> trainsToStation = new ArrayList<>();
+    static ArrayList<Train> trainsToStation;
 
     private ApiQuery() {
     }
@@ -53,6 +53,7 @@ public class ApiQuery {
     }
 
     private static ArrayList makeHttpRequest(URL url) {
+        trainsToStation = new ArrayList<>();
         Log.v(LOG_TAG, "Making a Http Request");
         OkHttpClient httpClient = new OkHttpClient();
         Request request = new Request.Builder()
@@ -63,7 +64,7 @@ public class ApiQuery {
             final Response response = httpClient.newCall(request).execute();
             jsonStringResponse = response.body().string();
             Log.v(LOG_TAG, "API responded with code = " + response.code()+response.body());
-            trainsToStation = parseJSON(fakeJSON);
+            trainsToStation = parseJSON(jsonStringResponse);
         } catch (IOException e) {
             e.printStackTrace();
         }

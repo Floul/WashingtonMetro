@@ -26,7 +26,6 @@ public class StationInfoFragment extends Fragment implements LoaderManager.Loade
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
     public static StationInfoFragment newInstance(String url) {
         StationInfoFragment fragment = new StationInfoFragment();
         Bundle args = new Bundle();
@@ -76,6 +75,13 @@ public class StationInfoFragment extends Fragment implements LoaderManager.Loade
 
     @Override
     public void onLoaderReset(@NonNull Loader<ArrayList<Train>> loader) {
+
+    }
+
+    public void onDataChanged (String newUrl){
+        stringUrl = newUrl;
+        LoaderManager loaderManager = getLoaderManager();
+        loaderManager.restartLoader(0,null,this).forceLoad();
 
     }
 

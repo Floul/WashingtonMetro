@@ -12,6 +12,8 @@ import com.example.android.washingtonmetro.StationInfoFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    public StationInfoFragment stationInfoFragment;
+
     private static final String TAG = MainActivity.class.getSimpleName();
     public static final String URL_BASE = "https://api.wmata.com/StationPrediction.svc/json/GetPrediction/";
 
@@ -47,13 +49,18 @@ public class MainActivity extends AppCompatActivity {
         openFragment(stringUrl);
     }
 
-    private void openFragment (String stringUrl){
-        StationInfoFragment stationInfoFragment = StationInfoFragment.newInstance(stringUrl);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.slide_in_up,R.anim.slide_out_down,R.anim.slide_in_up,R.anim.slide_out_down);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.add(R.id.fragment_container, stationInfoFragment);
-        fragmentTransaction.commit();
+    private void openFragment(String stringUrl) {
+        if (stationInfoFragment == null) {
+            stationInfoFragment = StationInfoFragment.newInstance(stringUrl);
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.setCustomAnimations(R.anim.slide_in_up, R.anim.slide_out_down, R.anim.slide_in_up, R.anim.slide_out_down);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.add(R.id.fragment_container, stationInfoFragment);
+            fragmentTransaction.commit();
+
+        } else {
+            stationInfoFragment.onDataChanged(stringUrl);
+        }
     }
 }

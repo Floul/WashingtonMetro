@@ -186,7 +186,7 @@
             android:layout_width="8dp"
             android:layout_height="8dp"
             android:layout_marginStart="193dp"
-            android:layout_marginTop="223dp"
+            android:layout_marginTop="216dp"
             android:onClick="buttons"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
